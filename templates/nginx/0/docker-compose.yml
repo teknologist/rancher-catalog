@@ -1,13 +1,13 @@
 web:
   image: nginx:stable-alpine
   volumes:
-   -  ${nginx_conf_path}:/etc/nginx/nginx.conf
+  - ${nginx_conf_path}:/etc/nginx/nginx.conf:ro
   volumes_from:
-   - ssl-certs
-   - nginx-config
+  - ssl-certs
+  - nginx-config
   ports:
-   - "${http_port}:80"
-   - "${https_port}:443"
+  - "80:80"
+  - "443:443"
   labels:
     io.rancher.container.pull_image: always
     io.rancher.container.hostname_override: container_name
@@ -20,7 +20,7 @@ ssl-certs:
     SERVICE_UID: '0'
     SERVICE_VOLUME: /ssl
   volumes:
-    - ${certs_path}:/ssl
+  - ${certs_path}:/ssl:ro
   labels:
     io.rancher.container.start_once: 'true'
 
@@ -31,6 +31,6 @@ nginx-config:
     SERVICE_UID: '0'
     SERVICE_VOLUME: /etc/nginx/conf.d
   volumes:
-    - ${nginx_confd_path}:/etc/nginx/conf.d
+  - ${nginx_confd_path}:/etc/nginx/conf.d:ro
   labels:
     io.rancher.container.start_once: 'true'
