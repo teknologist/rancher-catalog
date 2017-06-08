@@ -37,7 +37,7 @@
       type: "string" 
     
 services:
-  nginx:
+  web:
     scale: 1
     start_on_create: true
     health_check:

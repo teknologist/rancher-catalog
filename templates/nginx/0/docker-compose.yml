@@ -1,9 +1,9 @@
-nginx:
+web:
   image: nginx:stable-alpine
   volumes:
    -  ${nginx_conf_path}:/etc/nginx/nginx.conf
   volumes_from:
-   - nginx-ssl-certs
+   - ssl-certs
    - nginx-config
   ports:
    - "${http_port}:80"
@@ -12,9 +12,9 @@ nginx:
     io.rancher.container.pull_image: always
     io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
     io.rancher.container.hostname_override: container_name
-    io.rancher.sidekicks: nginx-ssl-certs, nginx-config
+    io.rancher.sidekicks: ssl-certs, nginx-config
 
-nginx-ssl-certs:
+ssl-certs:
     image: rawmind/alpine-volume:0.0.2-1
     environment:
       SERVICE_GID: '0'
