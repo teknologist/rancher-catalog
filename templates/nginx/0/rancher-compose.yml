@@ -36,7 +36,6 @@
       default: "/ssl"
       type: "string" 
     
-   
 services:
   nginx:
     scale: 1
