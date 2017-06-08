@@ -23,7 +23,6 @@ ssl-certs:
     - ${certs_path}:/ssl
   labels:
     io.rancher.container.start_once: 'true'
-    io.rancher.container.hostname_override: container_name
 
 nginx-config:
   image: rawmind/alpine-volume:0.0.2-1
@@ -35,4 +34,3 @@ nginx-config:
     - ${nginx_confd_path}:/etc/nginx/conf.d
   labels:
     io.rancher.container.start_once: 'true'
-    io.rancher.container.hostname_override: container_name
