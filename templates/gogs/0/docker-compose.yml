@@ -22,7 +22,6 @@ gogs-data:
       SERVICE_GID: '0'
       SERVICE_UID: '0'
       SERVICE_VOLUME: /data
-    network_mode: none
     volumes:
       - ${gogs_data}:/data
     labels:
@@ -49,7 +48,6 @@ gogs-database-volume:
       SERVICE_GID: '0'
       SERVICE_UID: '0'
       SERVICE_VOLUME: /var/lib/mysql
-    network_mode: none
     volumes:
       - ${mysql_data}:/var/lib/mysql
     labels:
