@@ -1,6 +1,6 @@
 .catalog:
   name: Gitlab Community
-  version: "9.2.4-ce.0"
+  version: "9.2.5-ce.0"
   description: |
     Gitlab CE is a free GitHub alternative (with host volumes)
   minimum_rancher_version: v0.56.0
