@@ -1,6 +1,6 @@
 .catalog:
   name: "Ghost"
-  version: "0.11.9-alpine"
+  version: "0.11-alpine"
   description: "Blog powered by Ghost. Requires no database"
   uuid: ghost-0
   minimum_rancher_version: v0.51.0

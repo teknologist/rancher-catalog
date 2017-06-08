@@ -1,5 +1,5 @@
-name: Gogs With Local Volumes
+name: Gogs
 description: |
-    A painless self-hosted Git service
-version: latest
+    A painless self-hosted Git service (with Host Volumes)
+version: 0.11.4
 category: Git

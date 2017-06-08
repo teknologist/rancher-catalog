@@ -37,6 +37,7 @@ mysql:
         - ${public_port}:3306
     environment:
         MYSQL_ROOT_PASSWORD: ${mysql_password}
+        MYSQL_DATABASE: gogs
     labels:
       io.rancher.container.pull_image: always
       io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}

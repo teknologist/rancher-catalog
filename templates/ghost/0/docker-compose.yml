@@ -1,5 +1,5 @@
 ghost:
-  image: ghost:0.11.9-alpine
+  image: ghost:0.11-alpine
   volumes:
   - ${volume_path}:/var/lib/ghost
   ports:
