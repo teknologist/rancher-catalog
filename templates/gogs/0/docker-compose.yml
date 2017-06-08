@@ -16,11 +16,24 @@ gogs:
       io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
       io.rancher.container.hostname_override: container_name
       io.rancher.sidekicks: gogs-data
+gogs-data:
+    image: rawmind/alpine-volume:0.0.2-1
+    environment:
+      SERVICE_GID: '0'
+      SERVICE_UID: '0'
+      SERVICE_VOLUME: /data
+    network_mode: none
+    volumes:
+      - ${gogs_data}:/data
+    labels:
+      io.rancher.container.start_once: 'true'
+      io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
+      io.rancher.container.hostname_override: container_name
 
 mysql:
     image: mysql:latest
     volumes_from:
-      - database-volume
+      - gogs-database-volume
     ports:
         - ${public_port}:3306
     environment:
@@ -28,9 +41,9 @@ mysql:
     labels:
       io.rancher.container.pull_image: always
       io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
-      io.rancher.sidekicks: database-volume
+      io.rancher.sidekicks: gogs-database-volume
 
-database-volume:
+gogs-database-volume:
     image: rawmind/alpine-volume:0.0.2-1
     environment:
       SERVICE_GID: '0'
@@ -42,16 +55,4 @@ database-volume:
     labels:
       io.rancher.container.start_once: 'true'
       io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
-
-gogs-data:
-    image: rawmind/alpine-volume:0.0.2-1
-    environment:
-      SERVICE_GID: '0'
-      SERVICE_UID: '0'
-      SERVICE_VOLUME: /data
-    network_mode: none
-    volumes:
-      -  ${gogs_data}:/data
-    labels:
-      io.rancher.container.start_once: 'true'
-      io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
+      io.rancher.container.hostname_override: container_name
