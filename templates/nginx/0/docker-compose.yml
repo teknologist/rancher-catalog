@@ -4,7 +4,6 @@ web:
   - ${nginx_conf_path}:/etc/nginx/nginx.conf:ro
   volumes_from:
   - ssl-certs
-  - nginx-config
   ports:
   - "80:80"
   - "443:443"
