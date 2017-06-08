@@ -34,7 +34,6 @@ services:
     environment:
       DRONE_SERVER: ws://drone:8000/ws/broker
       DRONE_SECRET: ${drone_secret}
-      DRONE_GITLAB_PRIVATE_MODE: ${gitlab_private_mode}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     links:
@@ -54,8 +53,11 @@ services:
       GIN_MODE: ${gin_mode}
       DRONE_SECRET: ${drone_secret}
       DRONE_OPEN: ${drone_open}
+{{- if (.Values.gitlab_private_mode)}}      
+      DRONE_GITLAB_PRIVATE_MODE: ${gitlab_private_mode}
+{{- end}}      
 {{- if (.Values.drone_admin)}}
-      DRONE_ADMIN: ${drone_admins}
+      DRONE_ADMIN: ${drone_admin}
 {{- end}}
 {{- if (.Values.drone_orgs)}}
       DRONE_ORGS: ${drone_orgs}
