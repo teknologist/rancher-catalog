@@ -114,6 +114,15 @@ catalog:
       label: "SSH port on host"
       description: "SSH port on host to access Drone Server"
       required: true  
+    - variable: "gitlab_private_mode"
+      type: enum
+      default: false
+      options:
+        - true
+        - false
+      label: "Gitlab private mode"
+      description: "Is Gitlab running in private mode ?"
+      required: true    
 
 services:
   mysql:

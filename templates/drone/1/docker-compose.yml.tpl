@@ -34,6 +34,7 @@ services:
     environment:
       DRONE_SERVER: ws://drone:8000/ws/broker
       DRONE_SECRET: ${drone_secret}
+      DRONE_GITLAB_PRIVATE_MODE: ${gitlab_private_mode}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     links:
@@ -89,9 +90,7 @@ services:
 {{- if eq .Values.database_driver "sqlite"}}
       io.rancher.sidekicks: server-volume
     volumes_from:
-      - server-volume
-    ports:
-      - ${ssh_port}:22/tcp  
+      - server-volume 
   server-volume:
     image: rawmind/alpine-volume:0.0.2-1
     environment:
