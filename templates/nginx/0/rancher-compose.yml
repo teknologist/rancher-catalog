@@ -1,7 +1,7 @@
 .catalog:
   name: "Nginx"
   version: "stable-alpine"
-  description: "Nginx (pronounced "engine-x") is an open source reverse proxy server"
+  description: "Nginx (pronounced engine-x) is an open source reverse proxy server"
   uuid: nginx-0
   minimum_rancher_version: v0.51.0
   questions:
