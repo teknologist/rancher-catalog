@@ -11,11 +11,11 @@ web:
   labels:
     io.rancher.container.pull_image: always
     io.rancher.container.hostname_override: container_name
+    io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
     io.rancher.sidekicks: ssl-certs, nginx-config
 
 ssl-certs:
   image: rawmind/alpine-volume:0.0.2-1
-  network_mode: none
   environment:
     SERVICE_GID: '0'
     SERVICE_UID: '0'
@@ -24,11 +24,11 @@ ssl-certs:
     - ${certs_path}:/ssl
   labels:
     io.rancher.container.start_once: 'true'
+    io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
     io.rancher.container.hostname_override: container_name
 
 nginx-config:
   image: rawmind/alpine-volume:0.0.2-1
-  network_mode: none
   environment:
     SERVICE_GID: '0'
     SERVICE_UID: '0'
@@ -37,4 +37,5 @@ nginx-config:
     - ${nginx_confd_path}:/etc/nginx/conf.d
   labels:
     io.rancher.container.start_once: 'true'
+    io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
     io.rancher.container.hostname_override: container_name
