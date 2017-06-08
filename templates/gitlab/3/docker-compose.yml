@@ -6,7 +6,7 @@ gitlab-server:
   labels:
     io.rancher.sidekicks: gitlab-data
   hostname: ${gitlab_hostname}
-  image: gitlab/gitlab-ce:latest
+  image: gitlab/gitlab-ce:9.2.5-ce.0
   volumes_from:
   - gitlab-data
   ulimits:
@@ -28,7 +28,7 @@ gitlab-data:
   entrypoint:
   - /bin/true
   hostname: gitdata
-  image: gitlab/gitlab-ce:latest
+  image: gitlab/gitlab-ce:9.2.5-ce.0
   volumes:
   - ${etc_gitlab}:/etc/gitlab
   - ${log_gitlab}:/var/log/gitlab
