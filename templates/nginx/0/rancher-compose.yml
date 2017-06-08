@@ -1,0 +1,51 @@
+.catalog:
+  name: "Nginx"
+  version: "stable-alpine"
+  description: "Nginx (pronounced "engine-x") is an open source reverse proxy server"
+  uuid: nginx-0
+  minimum_rancher_version: v0.51.0
+  questions:
+    - variable: nginx_conf_path
+      description: "Path to a nginx.conf file on host"
+      label: "nginx.conf path"
+      required: false
+      default: "/etc/nginx/nginx.conf"
+      type: "string"
+    - variable: nginx_confd_path
+      description: "Path to a conf.d directory on host for virtual hosts config"
+      label: "conf.d path"
+      required: false
+      default: "/etc/nginx/conf.d"
+      type: "string"
+    - variable: http_port
+      description: "http port to publish"
+      label: "Http Port"
+      required: true
+      default: "8080"
+      type: "int"
+    - variable: https_port
+      description: "https port to publish"
+      label: "Https Port"
+      required: true
+      default: "8443"
+      type: "int"
+    - variable: certs_path
+      description: "Path to a directory with ssl certs"
+      label: "ssl certs directory path"
+      required: false
+      default: "/ssl"
+      type: "string" 
+    
+   
+services:
+  nginx:
+    scale: 1
+    start_on_create: true
+    health_check:
+      port: 80
+      interval: 2000
+      unhealthy_threshold: 3
+      strategy: recreate
+      request_line: GET / HTTP/1.0
+      healthy_threshold: 2
+      response_timeout: 2000

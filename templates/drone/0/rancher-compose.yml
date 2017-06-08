@@ -95,7 +95,7 @@ catalog:
       description: "Database datasource. Required if database driver is mysql or postgres, http://readme.drone.io/admin/database-engines/"
       required: false
     - variable: "mysql_root_password"
-      type: "string"
+      type: "password"
       label: "MySQL root password"
       description: "Mysql Database root password"
       required: true
@@ -105,7 +105,7 @@ catalog:
       description: "Mysql drone user"
       required: true
     - variable: "mysql_user_password"
-      type: "string"
+      type: "password"
       label: "MySQL drone user password"
       description: "Mysql Database user password"
       required: true
