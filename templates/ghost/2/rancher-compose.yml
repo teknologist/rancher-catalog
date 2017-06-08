@@ -1,0 +1,20 @@
+.catalog:
+  name: "Ghost"
+  version: "alpine-latest"
+  description: "Blog powered by Ghost. Requires no database"
+  uuid: ghost-0
+  minimum_rancher_version: v0.51.0
+  questions:
+    - variable: public_port
+      description: "public port to access the blog"
+      label: "Public Port"
+      required: true
+      default: "80"
+      type: "int"
+    - variable: volume_path
+      description: "Local Data Volume"
+      label: "Local Data Volume"
+      required: true
+      default: "/var/lib/ghost"
+      type: "string"
+ghost:

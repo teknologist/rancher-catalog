@@ -1,0 +1,6 @@
+ghost:
+  image: ghost:0.11-alpine
+  volumes:
+  - ${volume_path}:/var/lib/ghost
+  ports:
+    - ${public_port}:2368
