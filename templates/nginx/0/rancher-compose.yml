@@ -17,6 +17,12 @@
       required: false
       default: "/etc/nginx/conf.d"
       type: "string"
+    - variable: http_ip
+      description: "http ip to publish to"
+      label: "Http Port"
+      required: true
+      default: "127.0.0.1"
+      type: "string"
     - variable: http_port
       description: "http port to publish"
       label: "Http Port"
@@ -43,7 +49,7 @@ services:
     health_check:
       port: 80
       interval: 2000
-      unhealthy_threshold: 3
+      unhealthy_threshold: 8
       strategy: recreate
       request_line: GET / HTTP/1.0
       healthy_threshold: 2

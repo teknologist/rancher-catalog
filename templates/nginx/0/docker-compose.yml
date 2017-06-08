@@ -6,8 +6,8 @@ web:
    - ssl-certs
    - nginx-config
   ports:
-   - "80:80"
-   - "443:443"
+   - "${http_ip}:${http_port}:80"
+   - "${http_ip}:${https_port}:443"
   labels:
     io.rancher.container.pull_image: always
     io.rancher.container.hostname_override: container_name
