@@ -17,7 +17,7 @@ gogs:
       io.rancher.container.hostname_override: container_name
       io.rancher.sidekicks: gogs-data
 gogs-data:
-    image: rawmind/alpine-volume:0.0.2-1
+    image: rawmind/alpine-volume:0.0.2-2
     environment:
       SERVICE_GID: '0'
       SERVICE_UID: '0'
@@ -44,7 +44,7 @@ mysql:
       io.rancher.sidekicks: gogs-database-volume
 
 gogs-database-volume:
-    image: rawmind/alpine-volume:0.0.2-1
+    image: rawmind/alpine-volume:0.0.2-2
     environment:
       SERVICE_GID: '0'
       SERVICE_UID: '0'
