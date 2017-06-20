@@ -1,4 +1,4 @@
-web:
+nginx-proxy:
   tty: true
   image: nginx:stable-alpine
   stdin_open: true
