@@ -19,7 +19,7 @@
       type: "string"
     - variable: http_ip
       description: "http ip to publish to"
-      label: "Http Port"
+      label: "Http IP to Publish to"
       required: true
       default: "127.0.0.1"
       type: "string"
@@ -40,8 +40,8 @@
       label: "ssl certs directory path"
       required: false
       default: "/ssl"
-      type: "string" 
-    
+      type: "string"
+
 services:
   web:
     scale: 1
