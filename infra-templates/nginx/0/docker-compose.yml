@@ -1,0 +1,43 @@
+version: '2'
+services:
+  nginx-proxy:
+    tty: true
+    image: nginx:stable-alpine
+    stdin_open: true
+    volumes:
+    - ${nginx_conf_path}:/etc/nginx/nginx.conf:ro
+    volumes_from:
+    - ssl-certs:ro
+    - nginx-config:ro
+    ports:
+    - "${http_ip}:${http_port}:80"
+    - "${http_ip}:${https_port}:443"
+    labels:
+      io.rancher.container.pull_image: always
+      io.rancher.sidekicks: ssl-certs, nginx-config
+
+  ssl-certs:
+      image: rawmind/alpine-volume:0.0.2-2
+      environment:
+        SERVICE_GID: '0'
+        SERVICE_UID: '0'
+        SERVICE_VOLUME: /ssl
+      volumes:
+      - ${certs_path}:/ssl:ro
+      labels:
+        io.rancher.container.pull_image: always
+        io.rancher.container.start_once: 'true'
+        io.rancher.scheduler.affinity:container_label: io.rancher.stack_service.name=$${stack_name}/$${service_name}
+
+  nginx-config:
+      image: rawmind/alpine-volume:0.0.2-2
+      environment:
+        SERVICE_GID: '0'
+        SERVICE_UID: '0'
+        SERVICE_VOLUME: /etc/nginx/conf.d
+      volumes:
+      - ${nginx_confd_path}:/etc/nginx/conf.d:ro
+      labels:
+        io.rancher.container.pull_image: always
+        io.rancher.container.start_once: 'true'
+        io.rancher.scheduler.affinity:container_label: io.rancher.stack_service.name=$${stack_name}/$${service_name}

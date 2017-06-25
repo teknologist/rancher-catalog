@@ -1,0 +1,5 @@
+name: Ghost
+description: |
+  Blog powered by Ghost
+version: 0.11-alpine
+category: Blogging
