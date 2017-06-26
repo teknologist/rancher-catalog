@@ -3,7 +3,7 @@ services:
   rancherdb-backup:
     image: teknologist/mysql-backup
     hostname: rancherdb-backup
-    {{- if eq .values.DB_DUMP_TARGET_REMOTE "false"}}
+    {{- if eq .Values.DB_DUMP_TARGET_REMOTE "false"}}
     volumes:
     - ${DB_DUMP_TARGET}:/backup
     {{- end }}
@@ -14,7 +14,7 @@ services:
       DB_PASS: ${CATTLEDB_USER_PASSWORD}
       DB_DUMP_FREQ: ${DB_DUMP_FREQ}
       DB_DUMP_BEGIN: ${DB_DUMP_BEGIN}
-      {{- if eq .values.DB_DUMP_TARGET_REMOTE "true"}}
+      {{- if eq .Values.DB_DUMP_TARGET_REMOTE "true"}}
       DB_DUMP_TARGET: ${DB_DUMP_TARGET}
       {{- else }}
       DB_DUMP_TARGET: /backup
