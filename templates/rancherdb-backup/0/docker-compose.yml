@@ -7,7 +7,9 @@ services:
     volumes:
     - ${DB_DUMP_TARGET}:/backup
     {{- end }}
+    {{- if ne .Values.LOCAL_SCRIPTS ""}}
     - ${LOCAL_SCRIPTS}:/scripts.d/post-backup:ro
+    {{- end }}
     environment:
       DB_SERVER: ${DB_SERVER}
       DB_NAMES: ${DB_NAMES}
