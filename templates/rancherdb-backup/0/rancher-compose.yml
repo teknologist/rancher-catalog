@@ -5,6 +5,13 @@ catalog:
   description: |
     RancherDB Backup
   questions:
+    - variable: DB_SERVER
+      label: MySQL Server host
+      description: |
+        NMySQL Server hostname or IP address
+      required: true
+      default: 'mysql'
+      type: string
     - variable: DB_NAMES
       label: Names of databases to dump
       description: |

@@ -6,6 +6,7 @@ services:
     volumes:
     - ${DB_DUMP_TARGET}:/db
     environment:
+      DB_SERVER: '${DB_SERVER}'
       DB_NAMES: '${DB_NAMES}'
       DB_USER: '${CATTLEDB_USER}'
       DB_PASS: ${CATTLEDB_USER_PASSWORD}
