@@ -46,12 +46,19 @@ catalog:
       required: true
       default: '+0'
       type: string
-    - variable: DB_DUMP_TARGET
-      label: Database Dump Directory on Host
+    - variable: DB_DUMP_TARGET_REMOTE
+      label: Database Dump to remote target ?
       description: |
-         Where to put the dump file, should be a directory. Supports three formats /, smb://hostname/share/path/ ,s3://bucketname/path
+         Is the dump target a remote ?
       required: true
-      default: '/backups'
+      default: false
+      type: boolean
+    - variable: DB_DUMP_TARGET
+      label: Database Dump target (local volume mapping or remote)
+      description: |
+         Where to put the dump file, should be a directory. Supports formats local host volume path  smb://hostname/share/path/ ,s3://bucketname/path
+      required: true
+      default: '/backup'
       type: string
     - variable: DB_DUMP_DEBUG
       label: Database Dump Debug ?
