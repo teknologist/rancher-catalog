@@ -4,9 +4,7 @@ services:
     image: deitch/mysql-backup
     hostname: rancherdb-backup
     volumes:
-    - ${MYSQL_DATA}:/var/lib/mysql
-    ports:
-        - ${MYSQL_PORT}:3006
+    - ${DB_DUMP_TARGET}:/db
     environment:
       DB_NAMES: '${DB_NAMES}'
       DB_USER: '${CATTLEDB_USER}'
