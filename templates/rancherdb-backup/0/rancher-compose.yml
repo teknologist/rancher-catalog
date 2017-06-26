@@ -39,6 +39,13 @@ catalog:
       required: true
       default: 60
       type: int
+    - variable: DB_DUMP_BEGIN
+      label: What time to do the first dump
+      description: |
+        What time to do the first dump. Defaults to immediate. Must be in one of two formats HHMM or +MM
+      required: true
+      default: '+0'
+      type: string
     - variable: DB_DUMP_TARGET
       label: Database Dump Directory on Host
       description: |
@@ -46,6 +53,14 @@ catalog:
       required: true
       default: '/backups'
       type: string
+    - variable: DB_DUMP_DEBUG
+      label: Database Dump Debug ?
+      description: |
+         If set to true, print copious shell script messages to the container log. Otherwise only basic messages are printed
+      required: true
+      default: false
+      type: boolean
+
 
 services:
   rancherdb-backup:
