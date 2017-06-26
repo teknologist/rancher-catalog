@@ -5,7 +5,7 @@ services:
     hostname: rancherdb-backup
     {{- if eq .values.DB_DUMP_TARGET_REMOTE "false"}}
     volumes:
-    - ${DB_DUMP_TARGET}:/db
+    - ${DB_DUMP_TARGET}:/backup
     {{- end }}
     environment:
       DB_SERVER: ${DB_SERVER}
@@ -16,6 +16,8 @@ services:
       DB_DUMP_BEGIN: ${DB_DUMP_BEGIN}
       {{- if eq .values.DB_DUMP_TARGET_REMOTE "true"}}
       DB_DUMP_TARGET: ${DB_DUMP_TARGET}
+      {{- else }}
+      DB_DUMP_TARGET: /backup
       {{- end }}
       DB_DUMP_DEBUG: ${DB_DUMP_DEBUG}
     stdin_open: true
