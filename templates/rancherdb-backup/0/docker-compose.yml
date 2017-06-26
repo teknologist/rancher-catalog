@@ -1,0 +1,18 @@
+version: '2'
+services:
+  rancherdb-backup:
+    image: deitch/mysql-backup
+    hostname: rancherdb-backup
+    volumes:
+    - ${MYSQL_DATA}:/var/lib/mysql
+    ports:
+        - ${MYSQL_PORT}:3006
+    environment:
+      DB_USER: '${CATTLEDB_USER}'
+      DB_PASS: ${CATTLEDB_USER_PASSWORD}
+      DB_DUMP_FREQ: ${DB_DUMP_FREQ}
+      DB_DUMP_TARGET: ${DB_DUMP_TARGET}
+    stdin_open: true
+    tty: true
+    labels:
+      io.rancher.container.pull_image: always
