@@ -5,6 +5,12 @@ catalog:
   description: |
     RancherDB Backup
   questions:
+    - variable: DB_NAMES
+      label: Names of databases to dump
+      description: |
+        Names of databases to dump; defaults to all databases in the database server
+      required: false
+      type: string
     - variable: CATTLEDB_USER
       label: CATTLEDB USER
       description: |

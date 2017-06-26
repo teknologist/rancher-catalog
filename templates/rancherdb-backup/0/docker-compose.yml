@@ -8,6 +8,7 @@ services:
     ports:
         - ${MYSQL_PORT}:3006
     environment:
+      DB_NAMES: '${DB_NAMES}'
       DB_USER: '${CATTLEDB_USER}'
       DB_PASS: ${CATTLEDB_USER_PASSWORD}
       DB_DUMP_FREQ: ${DB_DUMP_FREQ}
