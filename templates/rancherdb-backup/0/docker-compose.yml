@@ -1,7 +1,7 @@
 version: '2'
 services:
   rancherdb-backup:
-    image: deitch/mysql-backup
+    image: teknologist/mysql-backup
     hostname: rancherdb-backup
     volumes:
     - ${DB_DUMP_TARGET}:/db
