@@ -1,6 +1,6 @@
 version: 2
 catalog:
-  name: Drone
+  name: MySQL
   version: 5.7-rancher1
   upgrade_from: 0.5-rancher1
   description: |
