@@ -7,11 +7,12 @@ services:
     volumes:
     - ${DB_DUMP_TARGET}:/backup
     {{- end }}
+    - ${LOCAL_SCRIPTS}:/scripts.d/post-backup:ro
     environment:
       DB_SERVER: ${DB_SERVER}
       DB_NAMES: ${DB_NAMES}
-      DB_USER: ${CATTLEDB_USER}
-      DB_PASS: ${CATTLEDB_USER_PASSWORD}
+      DB_USER: ${MYSQL_USER}
+      DB_PASS: ${MYSQL_USER_PASSWORD}
       DB_DUMP_FREQ: ${DB_DUMP_FREQ}
       DB_DUMP_BEGIN: ${DB_DUMP_BEGIN}
       {{- if eq .Values.DB_DUMP_TARGET_REMOTE "true"}}

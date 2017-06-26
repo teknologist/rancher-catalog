@@ -18,19 +18,17 @@ catalog:
         Names of databases to dump; defaults to all databases in the database server
       required: false
       type: string
-    - variable: CATTLEDB_USER
-      label: CATTLEDB USER
+    - variable: MYSQL_USER
+      label: MYSQL USER
       description: |
-        CATTLEDB USER
+        MySQL USER - shoudl be a user with backup privileges
       required: true
-      default: 'cattle'
       type: string
-    - variable: CATTLEDB_USER_PASSWORD
-      label: CATTLEDB user password
+    - variable: MYSQL_USER_PASSWORD
+      label: MySQL user password
       description: |
-        MySQL root password
+        MySQL password
       required: true
-      default: ''
       type: string
     - variable: DB_DUMP_FREQ
       label: Database Dump Frequency
@@ -59,6 +57,13 @@ catalog:
          Where to put the dump file, should be a directory. Supports formats local host volume path  smb://hostname/share/path/ ,s3://bucketname/path
       required: true
       default: '/backup'
+      type: string
+    - variable: LOCAL_SCRIPTS
+      label: Post backup scripts path
+      description: |
+         Where to look for post abckup scripts
+      required: true
+      default: ''
       type: string
     - variable: DB_DUMP_DEBUG
       label: Database Dump Debug ?
