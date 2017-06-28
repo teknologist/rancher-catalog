@@ -22,7 +22,8 @@ gitlab-server:
   environment:
     GITLAB_OMNIBUS_CONFIG: |
       external_url '${gitlab_omnipus_prefix}${gitlab_hostname}'
-    GITLAB_FILEMAX: 1000000
+    GITLAB_FILEMAX: 1000000,
+    TZ: "UTC"
 gitlab-data:
   labels:
     io.rancher.container.start_once: 'true'
@@ -36,4 +37,3 @@ gitlab-data:
   - ${opt_gitlab}:/var/opt/gitlab
   - ${gitlab_backups}:/var/opt/gitlab/backups
   - ${gitlab_secrets_backups}:/secret/gitlab/backups
-  - /etc/localtime:/etc/localtime
