@@ -24,6 +24,14 @@
       type: "string"
       required: false
       default: ""
+    - variable: mongodir
+      label: "Directory for mongo data"
+      description: |
+        Directory for mongo data
+        Example: '/data/mongo'
+      required: false
+      type: "string"
+      default: "/opt/mongodb-cluster"
 mongo-cluster:
   scale: 3
   retain_ip: true

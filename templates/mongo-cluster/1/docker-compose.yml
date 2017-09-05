@@ -32,6 +32,6 @@ mongo-datavolume:
     io.rancher.container.hostname_override: container_name
     io.rancher.container.start_once: true
   volumes:
-    - /data/db
+    - ${mongodir}/${container_name}:/data/db
   entrypoint: /bin/true
   image: busybox
