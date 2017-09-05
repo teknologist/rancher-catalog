@@ -24,14 +24,6 @@
       type: "string"
       required: false
       default: ""
-    - variable: volume_name
-      label: "Volume name for mongo data"
-      description: |
-        Volume name for mongo data
-        Example: 'mongo-nfs'
-      required: false
-      type: "string"
-      default: "mongo-nfs"
 mongo-cluster:
   scale: 3
   retain_ip: true
