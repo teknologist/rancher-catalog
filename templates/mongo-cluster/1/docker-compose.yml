@@ -40,3 +40,5 @@ volumes:
   ${volume_name}:
     driver: rancher-nfs
     external: true
+    driver_opts:
+      onRemove: retain
