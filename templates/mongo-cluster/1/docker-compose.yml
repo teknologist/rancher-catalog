@@ -1,4 +1,6 @@
-mongo-cluster:
+version: '2'
+services:
+  mongo-cluster:
   restart: always
   environment:
     MONGO_SERVICE_NAME: mongo-cluster
@@ -15,23 +17,28 @@ mongo-cluster:
   volumes_from:
     - mongo-datavolume
     - mongo-base
-mongo-base:
-  restart: always
-  net: none
-  labels:
-    io.rancher.scheduler.affinity:host_label: ${host_label}
-    io.rancher.container.hostname_override: container_name
-    io.rancher.container.start_once: true
-  image: rancher/mongodb-conf:v0.1.1
-  stdin_open: true
-  entrypoint: /bin/true
-mongo-datavolume:
-  net: none
-  labels:
-    io.rancher.scheduler.affinity:host_label: ${host_label}
-    io.rancher.container.hostname_override: container_name
-    io.rancher.container.start_once: true
-  volumes:
-    - ${mongodir}/${container_name}:/data/db
-  entrypoint: /bin/true
-  image: busybox
+  mongo-base:
+    restart: always
+    net: none
+    labels:
+      io.rancher.scheduler.affinity:host_label: ${host_label}
+      io.rancher.container.hostname_override: container_name
+      io.rancher.container.start_once: true
+    image: rancher/mongodb-conf:v0.1.1
+    stdin_open: true
+    entrypoint: /bin/true
+  mongo-datavolume:
+    net: none
+    labels:
+      io.rancher.scheduler.affinity:host_label: ${host_label}
+      io.rancher.container.hostname_override: container_name
+      io.rancher.container.start_once: true
+    volumes:
+      - mongonfs:/data/db
+    entrypoint: /bin/true
+    image: busybox
+
+volumes:
+  mongonfs:
+    driver: rancher-nfs
+    external: true
