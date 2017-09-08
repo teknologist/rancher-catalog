@@ -1,5 +1,5 @@
 name: Gitlab Community Edition (Private)
 description: |
   Gitlab CE is a free GitHub alternative (with host volumes and locahost binding)
-version: 9.5.3-ce.0
+version: 9.5.3-ce.1
 category: Versioning
