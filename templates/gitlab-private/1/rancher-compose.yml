@@ -35,17 +35,17 @@
       required: true
       default: "127.0.0.1"
       type: "string"
-    - variable: "http_port"
-      description: "HTTP port to expose on host. Will be used to bind TCP"
-      label: "HTTP port:"
+    - variable: "https_port"
+      description: "HTTPS port to expose on host. Will be used to bind TCP"
+      label: "HTTPS port:"
       required: true
-      default: 8881
+      default: 8883
       type: "string"
     - variable: "gitlab_dir"
       description: "Base directory on host for gitlab data"
       label: "Base directory on host for gitlab data:"
       required: true
-      default: "/var/opt/gitlab"
+      default: "/var/docker-volumes/gitlab"
       type: "string"
 
 gitlab-server:
