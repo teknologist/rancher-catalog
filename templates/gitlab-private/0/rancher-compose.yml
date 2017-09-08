@@ -29,11 +29,11 @@
       required: true
       default: "127.0.0.1"
       type: "string"
-    - variable: "https_port"
-      description: "HTTPS port to expose on host. Will be used to bind TCP"
-      label: "HTTPS port:"
+    - variable: "http_port"
+      description: "HTTP port to expose on host. Will be used to bind TCP"
+      label: "HTTP port:"
       required: true
-      default: 8443
+      default: 8881
       type: "string"
     - variable: "gitlab_dir"
       description: "Base directory on host for gitlab data"
