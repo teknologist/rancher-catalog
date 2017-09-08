@@ -2,7 +2,6 @@ version: '2'
 services:
   gitlab-server:
     ports:
-    - ${ssh_ip}:22:22/tcp
     - ${host_ip}:${http_port}:80/tcp
     labels:
       io.rancher.sidekicks: gitlab-data
@@ -37,3 +36,10 @@ services:
     - ${gitlab_dir}/opt:/var/opt/gitlab
     - ${gitlab_dir}/backups:/var/opt/gitlab/backups
     - ${gitlab_dir}/secret-backups:/secret/gitlab/backups
+  ssh-proxy:
+    image: rancher/lb-service-haproxy:v0.7.9
+    ports:
+    - ${ssh_ip}:22:22/tcp
+    labels:
+      io.rancher.container.agent.role: environmentAdmin
+      io.rancher.container.create_agent: 'true'
