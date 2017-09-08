@@ -37,11 +37,10 @@
       type: "string"
     - variable: "gitlab_dir"
       description: "Base directory on host for gitlab data"
-      label: "/var/opt/gitlab:"
+      label: "Base directory on host for gitlab data:"
       required: true
       default: "/var/opt/gitlab"
       type: "string"
-
 
 gitlab-server:
   scale: 1
