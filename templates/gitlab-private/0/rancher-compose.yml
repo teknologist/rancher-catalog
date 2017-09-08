@@ -27,7 +27,7 @@
       description: "Host IP to bind SSH port to"
       label: "Host IP to bind SSH port to:"
       required: true
-      default: "127.0.0.1",
+      default: "127.0.0.1"
       type: "string"
     - variable: "http_port"
       description: "HTTP port to expose on host. Will be used to bind TCP"
