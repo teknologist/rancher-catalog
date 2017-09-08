@@ -29,12 +29,6 @@
       required: true
       default: 80
       type: "string"
-    - variable: "ssh_port"
-      description: "SSH port to expose on host. Will be used to bind TCP"
-      label: "SSH port:"
-      required: true
-      default: 22
-      type: "string"
     - variable: "opt_gitlab"
       description: "/var/opt/gitlab host volume path"
       label: "/var/opt/gitlab:"

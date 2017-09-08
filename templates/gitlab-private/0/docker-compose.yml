@@ -1,7 +1,6 @@
 gitlab-server:
   ports:
   - 172.17.0.1:22:22/tcp
-  - 172.17.0.1:${ssh_port}:22/tcp
   - 127.0.0.1:${http_port}:80/tcp
   labels:
     io.rancher.sidekicks: gitlab-data
