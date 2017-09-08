@@ -23,41 +23,23 @@
       options:
         - 'https://'
         - 'http://'
+    - variable: "host_ip"
+      description: "Host IP to bind SSH port to"
+      label: "Host IP to bind SSH port to:"
+      required: true
+      default: "127.0.0.1",
+      type: "string"
     - variable: "http_port"
       description: "HTTP port to expose on host. Will be used to bind TCP"
       label: "HTTP port:"
       required: true
       default: 80
       type: "string"
-    - variable: "opt_gitlab"
-      description: "/var/opt/gitlab host volume path"
+    - variable: "gitlab_dir"
+      description: "Base directory on host for gitlab data"
       label: "/var/opt/gitlab:"
       required: true
       default: "/var/opt/gitlab"
-      type: "string"
-    - variable: "log_gitlab"
-      description: "/var/log/gitlab host volume path"
-      label: "/var/log/gitlab:"
-      required: true
-      default: "/var/log/gitlab"
-      type: "string"
-    - variable: "etc_gitlab"
-      description: "/etc/gitlab host volume path"
-      label: "/etc/gitlab:"
-      required: true
-      default: "/etc/gitlab"
-      type: "string"
-    - variable: "gitlab_backups"
-      description: "/var/opt/gitlab/backups host volume path"
-      label: "/var/opt/gitlab/backups:"
-      required: true
-      default: "/var/opt/gitlab/backups"
-      type: "string"
-    - variable: "gitlab_secrets_backups"
-      description: "/secret/gitlab/backups host volume path"
-      label: "/secret/gitlab/backups:"
-      required: true
-      default: "/secret/gitlab/backups"
       type: "string"
 
 

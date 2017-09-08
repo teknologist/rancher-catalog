@@ -1,6 +1,6 @@
 gitlab-server:
   ports:
-  - 172.17.0.1:22:22/tcp
+  - ${host_ip}:22:22/tcp
   - 127.0.0.1:${http_port}:80/tcp
   labels:
     io.rancher.sidekicks: gitlab-data
@@ -30,8 +30,8 @@ gitlab-data:
   hostname: gitdata
   image: gitlab/gitlab-ce:9.5.3-ce.0
   volumes:
-  - ${etc_gitlab}:/etc/gitlab
-  - ${log_gitlab}:/var/log/gitlab
-  - ${opt_gitlab}:/var/opt/gitlab
-  - ${gitlab_backups}:/var/opt/gitlab/backups
-  - ${gitlab_secrets_backups}:/secret/gitlab/backups
+  - ${gitlab_dir}/etc:/etc/gitlab
+  - ${gitlab_dir}/log:/var/log/gitlab
+  - ${gitlab_dir}/opt:/var/opt/gitlab
+  - ${gitlab_dir}/backups:/var/opt/gitlab/backups
+  - ${gitlab_dir}/secret-backups:/secret/gitlab/backups
