@@ -1,0 +1,84 @@
+.catalog:
+  name: Gitlab Community (Private)
+  version: "9.5.3-ce.1"
+  description: |
+    Gitlab CE is a free GitHub alternative (with host volumes and locahost binding)
+  minimum_rancher_version: v0.56.0
+  maintainer: "The Teknologist <teknologist@gmail.com>"
+  uuid: gitlab-priv-0
+  questions:
+    - variable: "gitlab_hostname"
+      description: "Gitlab hostname (without uri scheme http:// or https://)"
+      label: "Hostname:"
+      required: true
+      default: "git.example.com"
+      type: "string"
+    - variable: "gitlab_omnipus_prefix"
+      label: "Gitlab external_url prefix:"
+      description: |
+        This is needed for the docker-compose file to set the correct external_url
+      default: 'https://'
+      required: true
+      type: "string"
+      options:
+        - 'https://'
+        - 'http://'
+    - variable: "ssh_ip"
+      description: "Host IP to bind SSH port to"
+      label: "Host IP to bind SSH port to:"
+      required: true
+      default: "127.0.0.1"
+      type: "string"
+    - variable: "host_ip"
+      description: "Host IP to bind HTTP port to"
+      label: "Host IP to bind HTTP port to:"
+      required: true
+      default: "127.0.0.1"
+      type: "string"
+    - variable: "https_port"
+      description: "HTTPS port to expose on host. Will be used to bind TCP"
+      label: "HTTPS port:"
+      required: true
+      default: 8883
+      type: "string"
+    - variable: "gitlab_dir"
+      description: "Base directory on host for gitlab data"
+      label: "Base directory on host for gitlab data:"
+      required: true
+      default: "/var/docker-volumes/gitlab"
+      type: "string"
+
+gitlab-server:
+  scale: 1
+  retain_ip: true
+  health_check:
+    port: 80
+    interval: 30000
+    unhealthy_threshold: 3
+    strategy: recreate
+    response_timeout: 2000
+    healthy_threshold: 2
+
+gitlab-data:
+  scale: 1
+  retain_ip: true
+
+ssh-proxy:
+    scale: 1
+    start_on_create: true
+    lb_config:
+      certs: []
+      port_rules:
+      - priority: 1
+        protocol: tcp
+        service: gitlab-server
+        source_port: 22
+        target_port: 22
+    health_check:
+      response_timeout: 2000
+      healthy_threshold: 2
+      port: 42
+      unhealthy_threshold: 3
+      initializing_timeout: 60000
+      interval: 2000
+      reinitializing_timeout: 60000
