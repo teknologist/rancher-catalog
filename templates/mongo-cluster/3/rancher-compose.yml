@@ -1,4 +1,5 @@
-.catalog:
+version: '2'
+catalog:
   name: "MongoDB"
   version: "3.2-teknologism3"
   description: "MongoDB Replica Set"
