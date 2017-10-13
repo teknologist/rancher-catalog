@@ -23,7 +23,7 @@ services:
         - mongo-base
     mongo-base:
       restart: always
-      net: none
+      network_mode: none
       labels:
         io.rancher.scheduler.affinity:host_label: ${host_label}
         io.rancher.container.hostname_override: container_name
@@ -32,7 +32,7 @@ services:
       stdin_open: true
       entrypoint: /bin/true
     mongo-datavolume:
-      net: none
+      network_mode: none
       labels:
         io.rancher.scheduler.affinity:host_label: ${host_label}
         io.rancher.container.hostname_override: container_name
